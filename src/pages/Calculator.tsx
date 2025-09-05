@@ -5,42 +5,35 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Layout from "../components/layout/Layout";
+import PollutionMeter from "../components/calculator/PollutionMeter";
 
 const Calculator = () => {
   const [location, setLocation] = useState({
     state: "",
-    district: "",
-    coordinates: { lat: "", lng: "" }
+    district: ""
   });
 
   const [metalConcentrations, setMetalConcentrations] = useState({
-    arsenic: "",
-    cadmium: "",
-    chromium: "",
-    copper: "",
+    calcium: "",
+    magnesium: "",
+    sodium: "",
+    potassium: "",
     iron: "",
-    lead: "",
-    manganese: "",
-    mercury: "",
-    nickel: "",
-    zinc: ""
+    arsenic: "",
+    uranium: ""
   });
 
   const [results, setResults] = useState(null);
 
   const metals = [
-    { key: "arsenic", name: "Arsenic (As)", unit: "mg/L", whoStandard: 0.01 },
-    { key: "cadmium", name: "Cadmium (Cd)", unit: "mg/L", whoStandard: 0.003 },
-    { key: "chromium", name: "Chromium (Cr)", unit: "mg/L", whoStandard: 0.05 },
-    { key: "copper", name: "Copper (Cu)", unit: "mg/L", whoStandard: 2.0 },
-    { key: "iron", name: "Iron (Fe)", unit: "mg/L", whoStandard: 0.3 },
-    { key: "lead", name: "Lead (Pb)", unit: "mg/L", whoStandard: 0.01 },
-    { key: "manganese", name: "Manganese (Mn)", unit: "mg/L", whoStandard: 0.4 },
-    { key: "mercury", name: "Mercury (Hg)", unit: "mg/L", whoStandard: 0.006 },
-    { key: "nickel", name: "Nickel (Ni)", unit: "mg/L", whoStandard: 0.07 },
-    { key: "zinc", name: "Zinc (Zn)", unit: "mg/L", whoStandard: 3.0 }
+    { key: "calcium", name: "Calcium (Ca)", unit: "mg/L", whoStandard: 200 },
+    { key: "magnesium", name: "Magnesium (Mg)", unit: "mg/L", whoStandard: 150 },
+    { key: "sodium", name: "Sodium (Na)", unit: "mg/L", whoStandard: 200 },
+    { key: "potassium", name: "Potassium (K)", unit: "mg/L", whoStandard: 12 },
+    { key: "iron", name: "Iron (Fe)", unit: "ppm", whoStandard: 0.3 },
+    { key: "arsenic", name: "Arsenic (As)", unit: "ppb", whoStandard: 10 },
+    { key: "uranium", name: "Uranium (U)", unit: "ppb", whoStandard: 15 }
   ];
 
   const calculateHMPI = () => {
@@ -124,16 +117,6 @@ const Calculator = () => {
                     </Select>
                   </div>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                  <div>
-                    <Label htmlFor="latitude">Latitude</Label>
-                    <Input placeholder="e.g., 30.7046" />
-                  </div>
-                  <div>
-                    <Label htmlFor="longitude">Longitude</Label>
-                    <Input placeholder="e.g., 75.8412" />
-                  </div>
-                </div>
               </CardContent>
             </Card>
 
@@ -191,36 +174,23 @@ const Calculator = () => {
               <CardHeader>
                 <CardTitle className="text-lg">Index Selection</CardTitle>
                 <CardDescription>
-                  Choose pollution indices to calculate
+                  Choose pollution index to calculate
                 </CardDescription>
               </CardHeader>
               <CardContent>
-                <Tabs defaultValue="all" className="w-full">
-                  <TabsList className="grid w-full grid-cols-2">
-                    <TabsTrigger value="all">All Indices</TabsTrigger>
-                    <TabsTrigger value="custom">Custom</TabsTrigger>
-                  </TabsList>
-                  <TabsContent value="all" className="mt-4">
-                    <div className="space-y-2 text-sm">
-                      <div className="flex justify-between">
-                        <span>Heavy Metal Pollution Index (HPI)</span>
-                        <span className="text-primary">✓</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>Heavy Metal Evaluation Index (HEI)</span>
-                        <span className="text-primary">✓</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>Pollution Load Index (PLI)</span>
-                        <span className="text-primary">✓</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span>Nemerow Index</span>
-                        <span className="text-primary">✓</span>
-                      </div>
-                    </div>
-                  </TabsContent>
-                </Tabs>
+                <Select>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Select pollution index" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="hpi">Heavy Metal Pollution Index (HPI)</SelectItem>
+                    <SelectItem value="hei">Heavy Metal Evaluation Index (HEI)</SelectItem>
+                    <SelectItem value="cd">Contamination Degree (Cd)</SelectItem>
+                    <SelectItem value="nemerow">Nemerow Pollution Index</SelectItem>
+                    <SelectItem value="pli">Pollution Load Index (PLI)</SelectItem>
+                    <SelectItem value="mi">Metal Index (MI)</SelectItem>
+                  </SelectContent>
+                </Select>
               </CardContent>
             </Card>
 
@@ -230,75 +200,15 @@ const Calculator = () => {
                 <CardHeader>
                   <CardTitle className="text-lg text-primary">Calculation Results</CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center p-3 bg-primary/5 rounded-lg">
-                      <span className="font-medium">HPI Value:</span>
-                      <span className="text-lg font-bold text-primary">{results.hpi}</span>
-                    </div>
-                    <div className="flex justify-between items-center p-3 bg-accent/5 rounded-lg">
-                      <span className="font-medium">HEI Value:</span>
-                      <span className="text-lg font-bold text-accent">{results.hei}</span>
-                    </div>
-                    <div className="flex justify-between items-center p-3 bg-secondary/5 rounded-lg">
-                      <span className="font-medium">PLI Value:</span>
-                      <span className="text-lg font-bold text-secondary">{results.pli}</span>
-                    </div>
-                  </div>
-
-                  <div className="pt-4 border-t">
-                    <div className="text-center space-y-2">
-                      <div className="status-moderate px-3 py-1 rounded-full text-sm font-medium inline-block">
-                        {results.category}
-                      </div>
-                      <p className="text-sm text-muted-foreground">{results.riskLevel}</p>
-                    </div>
-                  </div>
-
-                  <Button variant="outline" className="w-full mt-4">
+                <CardContent>
+                  <PollutionMeter value={results.hpi} />
+                  <Button variant="outline" className="w-full mt-6">
                     <FileDown className="mr-2 h-4 w-4" />
                     Export Report
                   </Button>
                 </CardContent>
               </Card>
             )}
-
-            {/* Quick Guide */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Pollution Categories</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-3">
-                <div className="flex items-center space-x-3">
-                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                  <div className="text-sm">
-                    <div className="font-medium">Safe (&lt; 25)</div>
-                    <div className="text-muted-foreground text-xs">Low pollution risk</div>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-                  <div className="text-sm">
-                    <div className="font-medium">Moderate (25-50)</div>
-                    <div className="text-muted-foreground text-xs">Requires monitoring</div>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-3 h-3 bg-orange-500 rounded-full"></div>
-                  <div className="text-sm">
-                    <div className="font-medium">High (50-100)</div>
-                    <div className="text-muted-foreground text-xs">Treatment needed</div>
-                  </div>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-                  <div className="text-sm">
-                    <div className="font-medium">Critical (&gt; 100)</div>
-                    <div className="text-muted-foreground text-xs">Immediate action</div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
           </div>
         </div>
       </div>

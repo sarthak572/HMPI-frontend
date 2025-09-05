@@ -18,8 +18,11 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
+          <Route path="/calculate-hmpi" element={<Calculator />} />
           <Route path="/calculator" element={<Calculator />} />
+          <Route path="/interactive-maps" element={<Maps />} />
           <Route path="/maps" element={<Maps />} />
+          <Route path="/data-repository" element={<div className="p-8 text-center">Data Repository - Coming Soon</div>} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
