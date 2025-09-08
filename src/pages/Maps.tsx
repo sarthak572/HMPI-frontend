@@ -69,54 +69,38 @@ const Maps = () => {
           </Card>
         </div>
 
-        {/* Right Panel - Input Controls Only */}
+        {/* Right Panel */}
         <div className="w-80 border-l border-border bg-card">
           <div className="p-6 space-y-6">
-            {/* Location Filters */}
+            {/* Filters */}
             <Card>
               <CardHeader>
                 <CardTitle className="flex items-center space-x-2">
-                  <MapPin className="h-5 w-5 text-primary" />
-                  <span>Location Filters</span>
+                  <Filter className="h-5 w-5 text-primary" />
+                  <span>Map Filters</span>
                 </CardTitle>
+                <CardDescription>
+                  Customize map display options
+                </CardDescription>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <label className="text-sm font-medium mb-2 block">State</label>
-                  <Select>
+                  <label className="text-sm font-medium mb-2 block">Data Layer</label>
+                  <Select value={selectedLayer} onValueChange={setSelectedLayer}>
                     <SelectTrigger>
-                      <SelectValue placeholder="Select state" />
+                      <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="punjab">Punjab</SelectItem>
-                      <SelectItem value="haryana">Haryana</SelectItem>
-                      <SelectItem value="up">Uttar Pradesh</SelectItem>
+                      <SelectItem value="pollution">Pollution Index</SelectItem>
+                      <SelectItem value="arsenic">Arsenic Levels</SelectItem>
+                      <SelectItem value="lead">Lead Levels</SelectItem>
+                      <SelectItem value="mercury">Mercury Levels</SelectItem>
                     </SelectContent>
                   </Select>
                 </div>
-                <div>
-                  <label className="text-sm font-medium mb-2 block">District</label>
-                  <Select>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select district" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="ludhiana">Ludhiana</SelectItem>
-                      <SelectItem value="amritsar">Amritsar</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </CardContent>
-            </Card>
 
-            {/* Temporal Filters */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-sm font-medium">Temporal Filters</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
                 <div>
-                  <label className="text-sm font-medium mb-2 block">Date Range</label>
+                  <label className="text-sm font-medium mb-2 block">Time Period</label>
                   <Select value={timeRange} onValueChange={setTimeRange}>
                     <SelectTrigger>
                       <SelectValue />
@@ -129,66 +113,73 @@ const Maps = () => {
                     </SelectContent>
                   </Select>
                 </div>
-              </CardContent>
-            </Card>
 
-            {/* Pollution Filters */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-sm font-medium">Pollution Filters</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
                 <div>
-                  <label className="text-sm font-medium mb-2 block">Index Type</label>
-                  <Select value={selectedLayer} onValueChange={setSelectedLayer}>
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="pollution">Pollution Index</SelectItem>
-                      <SelectItem value="arsenic">Arsenic Levels</SelectItem>
-                      <SelectItem value="iron">Iron Levels</SelectItem>
-                      <SelectItem value="uranium">Uranium Levels</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-                <div>
-                  <label className="text-sm font-medium mb-2 block">Pollution Level</label>
-                  <Select>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Filter by level" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="safe">Safe (0-25)</SelectItem>
-                      <SelectItem value="moderate">Moderate (25-50)</SelectItem>
-                      <SelectItem value="high">High (50-100)</SelectItem>
-                      <SelectItem value="critical">Critical (100+)</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-              </CardContent>
-            </Card>
-
-            {/* Map Settings */}
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-sm font-medium">Map Settings</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <label className="text-sm font-medium mb-2 block">Layer Opacity</label>
+                  <label className="text-sm font-medium mb-2 block">Opacity</label>
                   <Slider defaultValue={[80]} max={100} step={1} className="w-full" />
                 </div>
-                <div className="flex items-center space-x-2">
-                  <input type="checkbox" id="clustering" className="rounded" />
-                  <label htmlFor="clustering" className="text-sm">Enable Marker Clustering</label>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <input type="checkbox" id="legend" className="rounded" defaultChecked />
-                  <label htmlFor="legend" className="text-sm">Show Legend</label>
+              </CardContent>
+            </Card>
+
+            {/* Location Info */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center space-x-2">
+                  <MapPin className="h-5 w-5 text-primary" />
+                  <span>Selected Location</span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="text-center py-8 text-muted-foreground">
+                  <MapPin className="h-8 w-8 mx-auto mb-2 opacity-50" />
+                  <p className="text-sm">Click on map to view location details</p>
                 </div>
               </CardContent>
             </Card>
+
+            {/* Statistics */}
+            <Card>
+              <CardHeader>
+                <CardTitle className="flex items-center space-x-2">
+                  <BarChart3 className="h-5 w-5 text-primary" />
+                  <span>Regional Statistics</span>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-3">
+                <div className="flex justify-between text-sm">
+                  <span>Total Samples:</span>
+                  <span className="font-medium">2,847</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span>Safe Locations:</span>
+                  <span className="font-medium text-green-600">1,203 (42%)</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span>Moderate Risk:</span>
+                  <span className="font-medium text-yellow-600">892 (31%)</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span>High Risk:</span>
+                  <span className="font-medium text-orange-600">534 (19%)</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span>Critical Risk:</span>
+                  <span className="font-medium text-red-600">218 (8%)</span>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Quick Actions */}
+            <div className="space-y-2">
+              <Button variant="outline" className="w-full justify-start">
+                <MapIcon className="mr-2 h-4 w-4" />
+                Export Map
+              </Button>
+              <Button variant="outline" className="w-full justify-start">
+                <BarChart3 className="mr-2 h-4 w-4" />
+                Generate Report
+              </Button>
+            </div>
           </div>
         </div>
       </div>
