@@ -11,13 +11,7 @@ const Header = () => {
         {/* Main header */}
         <div className="flex items-center justify-between py-4">
           {/* Logo and branding */}
-          <div className="flex items-center space-x-4">
-            <img src="/lovable-uploads/a3d35f26-0eb5-47e0-99fa-a66b95b3f271.png" alt="HydroVeda Logo" className="h-12 w-auto" />
-            <div>
-              <h1 className="text-xl font-bold">HydroVeda</h1>
-              <p className="text-sm opacity-90">Heavy Metal Pollution Index Assessment Platform</p>
-            </div>
-          </div>
+          
 
           {/* Navigation and user actions */}
           <div className="flex items-center space-x-6">
