@@ -26,7 +26,7 @@ const Header = () => {
               <Button variant="ghost" size="sm" className="text-primary-foreground hover:bg-primary-glow/20">
                 <Bell className="h-4 w-4" />
               </Button>
-              <Button variant="government" size="sm">
+              <Button variant="government" size="sm" className="mx-[400px]">
                 <User className="h-4 w-4 mr-2" />
                 Login
               </Button>
