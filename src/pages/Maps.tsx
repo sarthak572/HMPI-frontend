@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Map as MapIcon, Layers, Filter, BarChart3, MapPin, Satellite } from "lucide-react";
+import IndiaMap from "../components/maps/IndiaMap";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -15,20 +16,9 @@ const Maps = () => {
       <div className="h-full flex">
         {/* Map Container */}
         <div className="flex-1 relative bg-muted/20">
-          {/* Map Placeholder */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-center space-y-4">
-              <div className="bg-primary/10 p-6 rounded-full inline-block">
-                <MapIcon className="h-12 w-12 text-primary" />
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold text-foreground">Interactive Map</h3>
-                <p className="text-muted-foreground">Heavy Metal Pollution Visualization</p>
-                <p className="text-sm text-muted-foreground mt-2">
-                  Map integration will display pollution data with interactive layers
-                </p>
-              </div>
-            </div>
+          {/* Interactive Map */}
+          <div className="absolute inset-0">
+            <IndiaMap />
           </div>
 
           {/* Map Controls */}
