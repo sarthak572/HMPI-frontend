@@ -1,8 +1,6 @@
 import { Mail, Phone, MapPin, ExternalLink } from "lucide-react";
-
 const Footer = () => {
-  return (
-    <footer className="bg-primary text-primary-foreground mt-16">
+  return <footer className="bg-primary text-primary-foreground mt-16">
       <div className="container mx-auto px-4 py-12">
         {/* Main footer content */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
@@ -14,11 +12,7 @@ const Footer = () => {
               developed for monitoring water quality across India.
             </p>
             <div className="flex space-x-2">
-              <img 
-                src="/lovable-uploads/a3d35f26-0eb5-47e0-99fa-a66b95b3f271.png" 
-                alt="HydroVeda" 
-                className="h-8 w-auto opacity-90"
-              />
+              <img src="/lovable-uploads/a3d35f26-0eb5-47e0-99fa-a66b95b3f271.png" alt="HydroVeda" className="h-8 w-auto opacity-90" />
             </div>
           </div>
 
@@ -84,9 +78,7 @@ const Footer = () => {
         {/* Bottom bar */}
         <div className="mt-12 pt-8 border-t border-primary-glow/20">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-sm opacity-90">
-              © 2024 HydroVeda - Government of India. All rights reserved.
-            </div>
+            <div className="text-sm opacity-90">© 2025 HydroVeda</div>
             <div className="flex space-x-6 text-sm">
               <a href="/privacy" className="hover:text-primary-glow transition-colors">Privacy Policy</a>
               <a href="/terms" className="hover:text-primary-glow transition-colors">Terms of Use</a>
@@ -96,8 +88,6 @@ const Footer = () => {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
