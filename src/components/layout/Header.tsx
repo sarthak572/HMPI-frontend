@@ -26,9 +26,11 @@ const Header = () => {
               <Button variant="ghost" size="sm" className="text-primary-foreground hover:bg-primary-glow/20">
                 <Bell className="h-4 w-4" />
               </Button>
-              <Button variant="government" size="sm" className="mx-[400px]">
-                <User className="h-4 w-4 mr-2" />
-                Login
+              <Button variant="government" size="sm" asChild>
+                <Link to="/login">
+                  <User className="h-4 w-4 mr-2" />
+                  Login
+                </Link>
               </Button>
               <Button variant="ghost" size="sm" className="md:hidden text-primary-foreground">
                 <Menu className="h-4 w-4" />
