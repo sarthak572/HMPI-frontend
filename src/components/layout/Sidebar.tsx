@@ -102,26 +102,7 @@ const Sidebar = ({
       </div>;
   };
   return <aside className={cn("w-80 bg-card border-r border-border h-full overflow-y-auto", className)}>
-      <div className="p-6">
-        <h2 className="text-lg font-semibold text-foreground mb-6">Navigation</h2>
-        
-        {/* Quick Stats */}
-        
-
-        {/* Navigation Menu */}
-        <nav className="space-y-2">
-          {sidebarItems.map(item => renderSidebarItem(item))}
-        </nav>
-
-        {/* Footer info */}
-        <div className="mt-8 pt-6 border-t border-border">
-          <div className="text-xs text-muted-foreground space-y-1">
-            <p>Version 2.1.0</p>
-            <p>© 2024 HydroVeda</p>
-            <p>Government of India</p>
-          </div>
-        </div>
-      </div>
+      
     </aside>;
 };
 export default Sidebar;
