@@ -3,11 +3,10 @@ import { Map as MapIcon, Layers, Filter, BarChart3, MapPin, Satellite } from "lu
 import IndiaMap from "../components/maps/IndiaMap";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Slider } from "@/components/ui/slider";
 import Layout from "../components/layout/Layout";
 
 const Maps = () => {
+  console.log("Maps component rendering");
   const [selectedLayer, setSelectedLayer] = useState("pollution");
   const [timeRange, setTimeRange] = useState("2024");
 
@@ -59,7 +58,7 @@ const Maps = () => {
           </Card>
         </div>
 
-        {/* Right Panel */}
+        {/* Right Panel - Simplified without Select components for now */}
         <div className="w-80 border-l border-border bg-card">
           <div className="p-6 space-y-6">
             {/* Filters */}
@@ -75,38 +74,25 @@ const Maps = () => {
               </CardHeader>
               <CardContent className="space-y-4">
                 <div>
-                  <label className="text-sm font-medium mb-2 block">Data Layer</label>
-                  <Select value={selectedLayer} onValueChange={setSelectedLayer}>
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="pollution">Pollution Index</SelectItem>
-                      <SelectItem value="arsenic">Arsenic Levels</SelectItem>
-                      <SelectItem value="lead">Lead Levels</SelectItem>
-                      <SelectItem value="mercury">Mercury Levels</SelectItem>
-                    </SelectContent>
-                  </Select>
+                  <label className="text-sm font-medium mb-2 block">Data Layer: {selectedLayer}</label>
+                  <Button 
+                    variant="outline" 
+                    onClick={() => setSelectedLayer(selectedLayer === "pollution" ? "arsenic" : "pollution")}
+                    className="w-full"
+                  >
+                    Toggle Layer
+                  </Button>
                 </div>
 
                 <div>
-                  <label className="text-sm font-medium mb-2 block">Time Period</label>
-                  <Select value={timeRange} onValueChange={setTimeRange}>
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="2024">2024</SelectItem>
-                      <SelectItem value="2023">2023</SelectItem>
-                      <SelectItem value="2022">2022</SelectItem>
-                      <SelectItem value="all">All Time</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
-
-                <div>
-                  <label className="text-sm font-medium mb-2 block">Opacity</label>
-                  <Slider defaultValue={[80]} max={100} step={1} className="w-full" />
+                  <label className="text-sm font-medium mb-2 block">Time Period: {timeRange}</label>
+                  <Button 
+                    variant="outline" 
+                    onClick={() => setTimeRange(timeRange === "2024" ? "2023" : "2024")}
+                    className="w-full"
+                  >
+                    Toggle Year
+                  </Button>
                 </div>
               </CardContent>
             </Card>
