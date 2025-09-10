@@ -1,8 +1,21 @@
-import { Bell, User, Menu, Search } from "lucide-react";
+import { Bell, User, Menu, Search, LogOut } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
+import { useAuth } from "@/contexts/AuthContext";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 const Header = () => {
+  const { user, signOut } = useAuth();
+
+  const handleSignOut = async () => {
+    await signOut();
+  };
+
   return <header className="bg-primary text-primary-foreground shadow-[var(--shadow-government)] sticky top-0 z-50">
       <div className="container mx-auto px-4">
         {/* Top bar with government info */}
@@ -30,12 +43,29 @@ const Header = () => {
             {/* User actions */}
             <div className="flex items-center space-x-2">
               
-              <Button variant="government" size="sm" asChild>
-                <Link to="/login">
-                  <User className="h-4 w-4 mr-2" />
-                  Login
-                </Link>
-              </Button>
+              {user ? (
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="government" size="sm" className="flex items-center space-x-2">
+                      <User className="h-4 w-4" />
+                      <span>{user.email}</span>
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent>
+                    <DropdownMenuItem onClick={handleSignOut}>
+                      <LogOut className="mr-2 h-4 w-4" />
+                      Sign Out
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              ) : (
+                <Button variant="government" size="sm" asChild>
+                  <Link to="/login">
+                    <User className="h-4 w-4 mr-2" />
+                    Login
+                  </Link>
+                </Button>
+              )}
               <Button variant="ghost" size="sm" className="md:hidden text-primary-foreground">
                 <Menu className="h-4 w-4" />
               </Button>
