@@ -17,15 +17,13 @@ const Header = () => {
           <div className="flex items-center space-x-6">
             {/* Search */}
             <div className="hidden md:flex relative">
-              <Input placeholder="Search locations, data..." className="w-80 bg-primary-foreground/10 border-primary-glow/30 text-primary-foreground placeholder:text-primary-foreground/60" />
+              
               <Search className="absolute right-3 top-2.5 h-4 w-4 opacity-60" />
             </div>
 
             {/* User actions */}
             <div className="flex items-center space-x-2">
-              <Button variant="ghost" size="sm" className="text-primary-foreground hover:bg-primary-glow/20">
-                <Bell className="h-4 w-4" />
-              </Button>
+              
               <Button variant="government" size="sm" asChild>
                 <Link to="/login">
                   <User className="h-4 w-4 mr-2" />
@@ -46,7 +44,7 @@ const Header = () => {
           <Link to="/maps" className="text-sm font-medium hover:text-primary-glow transition-colors">Interactive Maps</Link>
           <a href="/data" className="text-sm font-medium hover:text-primary-glow transition-colors">Data Repository</a>
           <a href="/reports" className="text-sm font-medium hover:text-primary-glow transition-colors">Reports</a>
-          <a href="/guide" className="text-sm font-medium hover:text-primary-glow transition-colors">User Guide</a>
+          
           
         </nav>
       </div>
