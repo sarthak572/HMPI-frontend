@@ -18,7 +18,7 @@ const Header = () => {
             {/* Search */}
             <div className="hidden md:flex relative">
               
-              <Search className="absolute right-3 top-2.5 h-4 w-4 opacity-60" />
+              
             </div>
 
             {/* User actions */}
