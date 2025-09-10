@@ -11,7 +11,7 @@ const Maps = () => {
   const [timeRange, setTimeRange] = useState("2024");
 
   return (
-    <Layout showSidebar={true}>
+    <Layout showSidebar={false}>
       <div className="h-full flex">
         {/* Map Container */}
         <div className="flex-1 relative bg-muted/20">
