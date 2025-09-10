@@ -11,7 +11,13 @@ const Header = () => {
         {/* Main header */}
         <div className="flex items-center justify-between py-4">
           {/* Logo and branding */}
-          
+          <Link to="/" className="flex items-center space-x-3">
+            <img 
+              src="/lovable-uploads/df879114-28c7-4140-af4d-747c33a63dcc.png" 
+              alt="HydroVeda Logo" 
+              className="h-10 w-auto"
+            />
+          </Link>
 
           {/* Navigation and user actions */}
           <div className="flex items-center space-x-6">
