@@ -8,26 +8,31 @@ import Calculator from "./pages/Calculator";
 import Maps from "./pages/Maps";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
+import Register from "./pages/Register";
+import { AuthProvider } from "@/integrations/AuthContext";
 
 const queryClient = new QueryClient();
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <TooltipProvider>
-      <Toaster />
-      <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/calculator" element={<Calculator />} />
-          <Route path="/maps" element={<Maps />} />
-          <Route path="/login" element={<Login />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </TooltipProvider>
-  </QueryClientProvider>
+	<QueryClientProvider client={queryClient}>
+		<TooltipProvider>
+			<Toaster />
+			<Sonner />
+			<AuthProvider>
+				<BrowserRouter>
+					<Routes>
+						<Route path="/" element={<Index />} />
+						<Route path="/calculator" element={<Calculator />} />
+						<Route path="/maps" element={<Maps />} />
+						<Route path="/login" element={<Login />} />
+						<Route path="/register" element={<Register />} />
+						{/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+						<Route path="*" element={<NotFound />} />
+					</Routes>
+				</BrowserRouter>
+			</AuthProvider>
+		</TooltipProvider>
+	</QueryClientProvider>
 );
 
 export default App;
