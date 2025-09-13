@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Navigation, Layers } from 'lucide-react';
+import { MapPin, Navigation } from 'lucide-react';
 
 const IndiaMap = () => {
   return (
@@ -65,17 +65,19 @@ const IndiaMap = () => {
       </div>
 
       {/* Map grid overlay for realism */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="w-full h-full" style={{
-          backgroundImage: `
-            linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px)
-          `,
-          backgroundSize: '50px 50px'
-        }} />
+      <div className="absolute inset-0 opacity-10 pointer-events-none">
+        <div
+          className="w-full h-full"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: '50px 50px'
+          }}
+        />
       </div>
     </div>
   );
 };
-
 export default IndiaMap;
