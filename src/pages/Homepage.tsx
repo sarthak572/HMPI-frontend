@@ -39,26 +39,26 @@ const Homepage = () => {
     href: "/analytics",
     variant: "accent" as const
   }];
-  const statsCards = [{
-    label: "Total Data Points",
-    value: "45,832",
-    icon: Database
-  }, {
-    label: "Active Users",
-    value: "1,247",
-    icon: Users
-  }, {
-    label: "Reports Generated",
-    value: "3,456",
-    icon: FileText
-  }, {
-    label: "System Uptime",
-    value: "99.8%",
-    icon: Shield
-  }];
+  // const statsCards = [{
+  //   label: "Total Data Points",
+  //   value: "45,832",
+  //   icon: Database
+  // }, {
+  //   label: "Active Users",
+  //   value: "1,247",
+  //   icon: Users
+  // }, {
+  //   label: "Reports Generated",
+  //   value: "3,456",
+  //   icon: FileText
+  // }, {
+  //   label: "System Uptime",
+  //   value: "99.8%",
+  //   icon: Shield
+  // }];
   return <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="hero-gradient text-primary-foreground py-20">
+      <section className="hero-gradient text-primary-foreground py-8">
         <div className="container mx-auto px-4 text-center">
           <div className="animate-fade-in">
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
@@ -67,9 +67,9 @@ const Homepage = () => {
               <span className="text-primary-glow">Assessment Platform</span>
             </h1>
             <p className="text-xl md:text-2xl mb-8 opacity-90 max-w-4xl mx-auto leading-relaxed">
-              Comprehensive Heavy Metal Pollution Monitoring & Assessment System for India
+              Empowering scientific water quality analysis with precision and authority
               <br />
-              <span className="text-lg">Empowering scientific water quality analysis with precision and authority</span>
+              <span className="text-lg"></span>
             </p>
             
             <div className="flex flex-col md:flex-row justify-center items-center space-y-4 md:space-y-0 md:space-x-6">
@@ -86,12 +86,12 @@ const Homepage = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
+      {/* Stats Section
       <section className="py-12 bg-primary/5">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {statsCards.map((stat, index) => <div key={stat.label} className="text-center animate-fade-in" style={{
-            animationDelay: `${index * 100}ms`
+            animationDelay: ${index * 100}ms
           }}>
                 <div className="government-card p-6">
                   <stat.icon className="h-8 w-8 text-primary mx-auto mb-3" />
@@ -101,24 +101,24 @@ const Homepage = () => {
               </div>)}
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Main Dashboard */}
       <section className="py-16">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-foreground mb-4">
               Platform Services
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Access comprehensive tools for heavy metal pollution assessment, 
+            {/* <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Access comprehensive tools for heavy metal pollution assessment,
               monitoring, and reporting with government-standard accuracy.
-            </p>
+            </p> */}
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {dashboardCards.map((card, index) => <div key={card.title} className="animate-fade-in" style={{
-            animationDelay: `${index * 100}ms`
+            animationDelay: ${index * 100}ms
           }}>
                 <DashboardCard title={card.title} description={card.description} icon={card.icon} href={card.href} variant={card.variant} />
               </div>)}
